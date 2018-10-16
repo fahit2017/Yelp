@@ -21,6 +21,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
         
+        setupNavBar()
+        
         Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
             
                 self.businesses = businesses
@@ -47,6 +49,18 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         
     }
     
+    func setupNavBar(){
+       let searchController = UISearchController(searchResultsController: nil)
+       searchDisplayController?.displaysSearchBarInNavigationBar = true
+       navigationItem.titleView = searchController.searchBar
+    }
+    
+    
+    
+    
+    
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if businesses != nil {
             return businesses.count
@@ -62,6 +76,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         
         return cell
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
